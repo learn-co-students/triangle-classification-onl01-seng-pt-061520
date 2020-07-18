@@ -1,4 +1,4 @@
-class Triangle 
+class Triangle
 
   attr_accessor :one, :two, :three
   
@@ -16,6 +16,7 @@ class Triangle
     sum_one_two = @sides[0] + @sides[1]
     sum_one_three = @sides[0] + @sides[2]
     sum_two_three = @sides[1] + @sides[2]
+    
     if (@sides.none? {|i| i <= 0}) && (sum_one_two > @sides[2]) && (sum_one_three > @sides[1]) && (sum_two_three > @sides[0])
       return true
     else 
@@ -33,10 +34,22 @@ class Triangle
         return :scalene
       end
     else
-      raise TriangleError
+      begin
+        raise TriangleError
+      rescue TriangleError => error
+          puts error.message
+      end
     end
   end 
-  class TriangleError < StandardError
+end
+
+class TriangleError < StandardError
+  def message
+    "This is not a legal triangle."
   end
 end
+
+Triangle.new(-1, -2, 3)
+
+
 
