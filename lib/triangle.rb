@@ -15,5 +15,18 @@ def kind
   elsif self.side1 + self.side2 <= self.side3 || self.side2 + self.side3 <= self.side1 || self.side3 + self.side1 <= self.side2
     raise TriangleError
     
-    elsif self.side1 == self.side2 && self.side2 != self.side3 && self.side3 == self.side1
+    elsif self.side1 == self.side2 && self.side2 == self.side3 && self.side3 == self.side1
       :equilateral
+      
+    elsif self.side1 != self.side2 && self.side2 != self.side3 && self.side1 != self.side3
+      :scalene
+      
+    elsif self.side1 == self.side2 || self.side2 == self.side3 || self.side1 == self.side3
+      :isosceles
+    end
+  end
+  
+  class TriangleError < StandardError
+    
+  end
+end
